@@ -1,11 +1,41 @@
-#!/bin/bash 
+#!/bin/bash
 echo "------------Step1-----------"
-trap "echo ' Trapped Ctrl-C'" SIGINT 
-echo This is a test script 
-count=1 
-while [ $count -le 10 ] 
-	do 
-		echo "Loop #$count" 
-		sleep 1 
-		count=$(( $count + 1 )) 
+trap "echo ' Trapped Ctrl-C'" SIGINT
+echo This is a test script
+count=1
+while [ $count -le 10 ]
+	do
+		echo "Loop #$count"
+		sleep 1
+		count=$(( $count + 1 ))
 	done
+#команда nohup ./5basic_sig.sh отвязывает процесс от терминала. Процесс теряет ссылки на STDOUT STDIN. Потоки I/O переводятся в файл nohup.out
+#bg, fg, jobs ./5basic_sig.sh &
+
+#Планирование запуска скриптов at, cron
+
+# Однократное выполнение - at
+# syntax: at [-f filename] time / Формат времени: 10:15, 10:15PM, now, noon, midnight
+# Стандартный формат указания даты, при котором дата записывается по шаблонам MMDDYY, MM/DD/YY, или DD.MM.YY
+# Запись вида now + 25 minutes
+# Список заданий atq
+# Удаление заданий atrm №задания
+
+# Регулярный запуск - cron
+# Просмотр заданий crontab -l
+# При планировании запуска скрипта по расписанию crontab принимает данные о том, когда нужно выполнить задание, в таком формате:
+# минута, час, день месяца, месяц, день недели.
+# Например, если надо, чтобы некий скрипт с именем command выполнялся ежедневно в 10:30, этому будет соответствовать такая запись в таблице заданий:
+# 30 10 * * * command
+# Нумерация дней недели начинается с 0, 0 означает воскресенье, 6 — субботу
+# Для того чтобы добавить запись в таблицу, нужно вызвать crontab с ключом -e:
+# crontab –e
+# Затем можно вводить команды формирования расписания:
+# 30 10 * * * /home/likegeeks/Desktop/myscript
+# Если вы столкнётесь с ошибкой «Resource temporarily unavailable», выполните нижеприведённую команду с правами root-пользователя:
+# $ rm -f /var/run/crond.pid
+# Организовать периодический запуск скриптов с использованием cron можно ещё проще, воспользовавшись несколькими специальными директориями:
+# /etc/cron.hourly
+# /etc/cron.daily
+# /etc/cron.weekly
+# /etc/cron.monthly
