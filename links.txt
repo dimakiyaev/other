@@ -45,3 +45,7 @@ https://www.sorendam.com/take-control-of-your-console-in-windows-with-babun-oh-m
 -- Статьи по bash via habr
 https://yadi.sk/i/yGe4HkwJ3MUvyWhttps://yadi.sk/i/yGe4HkwJ3MUvyW
 -- Статьи по bash via habr
+
+-- Hotkeys bash/vim
+https://habrahabr.ru/post/99843/
+-- Hotkeys bash/vim
